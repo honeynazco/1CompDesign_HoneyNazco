@@ -1,0 +1,155 @@
+$colorFondo: silver;
+$colorFondoSec: rgb(105, 35, 107);
+$colorTexto: white;
+$colorTextSec: black;
+$fontSizeBase: 15px;
+$sombra: 2px 2px 10px;
+
+*{
+    margin: 0px;
+    padding: 0px;
+    box-sizing: border-box;
+    text-decoration: none;
+    list-style: none;
+}
+
+:root{
+    font-size: $fontSizeBase;
+}
+
+@mixin setFlex ($flexDir, $align){
+    display: flex;
+    flex-direction: $flexDir;
+    flex-wrap: wrap;
+    justify-content: $align;
+}
+
+.encabezado{
+    background-color: $colorFondoSec;
+    padding: 1rem;
+    text-align: center;
+
+    h1{
+        color: $colorTexto;
+        font-size: $fontSizeBase * 2;  
+        font-family: 'Great Vibes', cursive;      
+    }
+}
+
+.mainMenu{
+    background-color: $colorFondo;
+    padding: 0.5rem;
+    box-shadow: $sombra;
+
+    ul{
+        @include setFlex(row, space-around);
+
+        a{
+            color: $colorTextSec;
+            font-size: $fontSizeBase * 1.5;
+            font-family: 'Hubballi', cursive;
+
+            &:hover{
+                color: $colorTexto;
+                background-color: $colorTextSec;
+                padding: 0.3rem;
+                border-radius: 1rem;
+            }
+        }
+    }
+}
+
+.sectionMain{
+    border-radius: 1rem;
+    box-shadow: $sombra;
+    margin: 5rem;
+    display: grid;
+    background-color: $colorFondo;
+
+    grid-template-areas:
+    "titulo menuSeccion"
+    "dsp imagenDetalle"
+    "menuDetalle menuDetalle";
+
+    .titDet{
+        grid-area: titulo;
+        font-family: 'Hubballi', cursive;
+        text-align: center;
+        padding-top: 1rem;
+        font-size: $fontSizeBase * 2.5;
+    }
+
+    .subMenu{
+        grid-area: menuSeccion;
+        @include setFlex(row, space-around);
+
+        li{
+            padding-top: 1rem;
+
+            a{
+                font-family: 'Hubballi', cursive;
+                color: $colorFondoSec;
+                font-size: $fontSizeBase * 2;
+                text-decoration: underline;
+                
+                &:hover{
+                    color: $colorTextSec;
+                }
+            }
+        }
+    }
+
+    .dsp{
+        grid-area: dsp;
+        @include setFlex(column, center);
+        margin: 0rem 0rem 0rem 2rem;
+
+        p{
+            font-size: $fontSizeBase * 1.6;
+            font-family: 'Hubballi', cursive;
+            text-align: justify;
+        }
+    }
+
+    .imagenDsp{
+        margin: 2rem;
+        grid-area: imagenDetalle;
+        max-width: 100%;
+        height: auto;
+
+        img{
+            border-radius: 1rem;
+            width: 30rem;
+
+            &:hover{
+                filter: grayscale(100%);
+            }
+        }
+    }
+
+    .menuDet{
+
+        @include setFlex(column, center);
+        grid-area: menuDetalle;
+        padding-bottom: 2rem;
+        text-align: center;
+
+        li{
+            text-align: center;
+
+            a{
+                color: $colorTexto;
+                font-family: 'Hubballi', cursive;
+                font-size: $fontSizeBase * 1.5;
+                background-color: $colorFondoSec;
+                padding: 0.5rem 1rem;
+                border-radius: 2rem;
+
+                &:hover{
+                    color: $colorFondoSec;
+                    background-color: $colorTexto;
+                }
+            }
+        }
+    }
+}
